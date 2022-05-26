@@ -9,9 +9,10 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 const Detail: NextPage = () => {
   const [isLike, setIsLike] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(150);
   const controls = useAnimation();
   const toggleLike = async () => {
+    (await isLike) ? setCount(count - 1) : setCount(count + 1);
     await setIsLike(!isLike);
     controls.start({ scale: [1, 1.3, 1.6, 1.3, 1] });
   };
@@ -36,7 +37,6 @@ const Detail: NextPage = () => {
                 </MotionBox>
                 <Text>{count}</Text>
               </Box>
-              <Img src="heart.png" w="40px" h="40px" />
               <Button rounded="full" mt="2">
                 シェア
               </Button>
